@@ -7,14 +7,14 @@ public class Candidate {
 
     private int id;
     private String name;
-    private String desc;
-    private LocalDateTime create;
+    private String description;
+    private LocalDateTime created;
 
-    public Candidate(int id, String name, String desc, LocalDateTime create) {
+    public Candidate(int id, String name, String description, LocalDateTime created) {
         this.id = id;
         this.name = name;
-        this.desc = desc;
-        this.create = create;
+        this.description = description;
+        this.created = created;
     }
 
     public Candidate() {
@@ -36,20 +36,20 @@ public class Candidate {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public LocalDateTime getCreate() {
-        return create;
+    public LocalDateTime getCreated() {
+        return created;
     }
 
-    public void setCreate(LocalDateTime create) {
-        this.create = create;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     @Override
