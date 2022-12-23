@@ -14,7 +14,7 @@ public class PostStore {
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
     private Integer mapKey = 0;
-    private int PID = 1;
+    private int pid = 1;
 
     private PostStore() {
         add(new Post("Junior Java Job", "Desc Junior Java Dev"));
@@ -31,7 +31,7 @@ public class PostStore {
     }
 
     public void add(Post post) {
-        post.setId(PID++);
+        post.setId(pid++);
         post.setCreated(LocalDateTime.now());
         posts.put(mapKey++, post);
     }
