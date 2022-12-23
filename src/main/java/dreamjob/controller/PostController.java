@@ -5,8 +5,8 @@ import dreamjob.store.PostStore;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.time.LocalDateTime;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PostController {
@@ -20,10 +20,29 @@ public class PostController {
     }
 
     @GetMapping("/formAddPost")
+    public String formAddPost(Model model) {
+        return "addPost";
+    }
+
+    @PostMapping("/createPost")
+    public String createPost(@ModelAttribute Post post) {
+        postStore.add(post);
+        return "redirect:/posts";
+    }
+
+/*    @GetMapping("/formAddPost")
     public String addPost(Model model) {
         model.addAttribute("post",
                 new Post(0, "Заполните название",
                         "Заполните описание", LocalDateTime.now()));
         return "addPost";
-    }
+    }*/
+
+/*    @PostMapping("/createPost")
+    public String createPost(HttpServletRequest request) {
+        var name = request.getParameter("name");
+        System.out.print(name);
+        postStore.add(new Post(1, name, "desc", LocalDateTime.now()));
+        return "redirect:/posts";
+    }*/
 }
