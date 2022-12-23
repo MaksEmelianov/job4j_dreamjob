@@ -17,8 +17,7 @@ public class Post {
         this.created = created;
     }
 
-    public Post(int id, String name, String description) {
-        this.id = id;
+    public Post(String name, String description) {
         this.name = name;
         this.description = description;
         this.created = LocalDateTime.now();

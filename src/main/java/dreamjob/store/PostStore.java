@@ -2,6 +2,7 @@ package dreamjob.store;
 
 import dreamjob.model.Post;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,13 +13,14 @@ public class PostStore {
 
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
-    private Integer count = 0;
+    private Integer mapKey = 0;
+    private int PID = 1;
 
-/*    private PostStore() {
-        add(new Post(1, "Junior Java Job", "Desc Junior Java Dev", LocalDateTime.now()));
-        add(new Post(2, "Middle Java Job", "Desc Middle Java Dev", LocalDateTime.now()));
-        add(new Post(3, "Senior Java Job", "Desc Senior Java Dev", LocalDateTime.now()));
-    }*/
+    private PostStore() {
+        add(new Post("Junior Java Job", "Desc Junior Java Dev"));
+        add(new Post("Middle Java Job", "Desc Middle Java Dev"));
+        add(new Post("Senior Java Job", "Desc Senior Java Dev"));
+    }
 
     public static PostStore instOf() {
         return INST;
@@ -29,6 +31,19 @@ public class PostStore {
     }
 
     public void add(Post post) {
-        posts.put(count++, post);
+        post.setId(PID++);
+        post.setCreated(LocalDateTime.now());
+        posts.put(mapKey++, post);
+    }
+
+    public void update(Post post) {
+        posts.replace(post.getId(), post);
+    }
+
+    public Post findById(int id) {
+        return findAll().stream()
+                .filter(post -> post.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }

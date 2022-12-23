@@ -16,7 +16,7 @@ public class CandidateController {
     @GetMapping("/candidates")
     public String candidates(Model model) {
         model.addAttribute("candidates", candidateStore.findAll());
-        return "candidates";
+        return "candidates/candidates";
     }
 
     @GetMapping("/formAddCandidate")
@@ -24,6 +24,6 @@ public class CandidateController {
         model.addAttribute("candidate",
                 new Candidate(0, "Заполните название",
                         "Заполните описание", LocalDateTime.now()));
-        return "addCandidate";
+        return "candidates/addCandidate";
     }
 }
