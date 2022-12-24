@@ -16,6 +16,11 @@ public class Candidate {
         this.description = description;
     }
 
+    public Candidate(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public Candidate() {
     }
 
