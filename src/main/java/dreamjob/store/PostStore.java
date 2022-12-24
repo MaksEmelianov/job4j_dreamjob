@@ -2,7 +2,6 @@ package dreamjob.store;
 
 import dreamjob.model.Post;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,12 +33,11 @@ public class PostStore {
 
     public void add(Post post) {
         post.setId(pid.getAndIncrement());
-        post.setCreated(LocalDateTime.now());
         posts.put(mapKey.getAndIncrement(), post);
     }
 
     public void update(Post post) {
-        posts.replace(post.getId(), post);
+        posts.replace(post.getId() - 1, post);
     }
 
     public Post findById(int id) {
