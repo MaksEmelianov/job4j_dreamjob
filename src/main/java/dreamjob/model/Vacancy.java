@@ -8,26 +8,17 @@ public class Vacancy {
     private int id;
     private String title;
     private String description;
-    private LocalDateTime createDate;
-
-    public Vacancy(int id, String title, String description, LocalDateTime createDate) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.createDate = createDate;
-    }
+    private LocalDateTime createDate = LocalDateTime.now();
 
     public Vacancy(int id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.createDate = LocalDateTime.now();
     }
 
     public Vacancy(String title, String description) {
         this.title = title;
         this.description = description;
-        this.createDate = LocalDateTime.now();
     }
 
     public Vacancy() {

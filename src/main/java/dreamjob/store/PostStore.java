@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PostStore {
 
@@ -13,8 +14,9 @@ public class PostStore {
 
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
-    private Integer mapKey = 0;
-    private int pid = 1;
+    private final AtomicInteger mapKey = new AtomicInteger(0);
+
+    private final AtomicInteger pid = new AtomicInteger(1);
 
     private PostStore() {
         add(new Post("Junior Java Job", "Desc Junior Java Dev"));
@@ -31,9 +33,9 @@ public class PostStore {
     }
 
     public void add(Post post) {
-        post.setId(pid++);
+        post.setId(pid.getAndIncrement());
         post.setCreated(LocalDateTime.now());
-        posts.put(mapKey++, post);
+        posts.put(mapKey.getAndIncrement(), post);
     }
 
     public void update(Post post) {

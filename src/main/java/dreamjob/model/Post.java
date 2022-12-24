@@ -8,19 +8,17 @@ public class Post {
     private int id;
     private String name;
     private String description;
-    private LocalDateTime created;
+    private LocalDateTime created = LocalDateTime.now();
 
-    public Post(int id, String name, String description, LocalDateTime created) {
+    public Post(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.created = created;
     }
 
     public Post(String name, String description) {
         this.name = name;
         this.description = description;
-        this.created = LocalDateTime.now();
     }
 
     public Post() {

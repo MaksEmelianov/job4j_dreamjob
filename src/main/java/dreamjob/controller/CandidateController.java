@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.time.LocalDateTime;
-
 @Controller
 public class CandidateController {
 
@@ -23,7 +21,7 @@ public class CandidateController {
     public String addCandidate(Model model) {
         model.addAttribute("candidate",
                 new Candidate(0, "Заполните название",
-                        "Заполните описание", LocalDateTime.now()));
+                        "Заполните описание"));
         return "candidates/addCandidate";
     }
 }
