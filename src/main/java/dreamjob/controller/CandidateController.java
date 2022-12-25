@@ -1,7 +1,7 @@
 package dreamjob.controller;
 
 import dreamjob.model.Candidate;
-import dreamjob.store.old.CandidateStore;
+import dreamjob.repository.old.CandidateStore;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package dreamjob.service;
 
 import dreamjob.model.Post;
-import dreamjob.store.old.PostStore;
+import dreamjob.repository.old.PostStore;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package dreamjob.store;
+package dreamjob.service;
 
 import dreamjob.model.Resume;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public interface ResumeRepository {
+public interface ResumeService {
 
     Resume save(Resume resume);
 

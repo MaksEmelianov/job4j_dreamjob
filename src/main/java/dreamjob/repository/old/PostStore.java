@@ -1,4 +1,4 @@
-package dreamjob.store.old;
+package dreamjob.repository.old;
 
 import dreamjob.model.Post;
 

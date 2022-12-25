@@ -1,7 +1,7 @@
 package dreamjob.controller;
 
 import dreamjob.model.Post;
-import dreamjob.store.old.PostStore;
+import dreamjob.repository.old.PostStore;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

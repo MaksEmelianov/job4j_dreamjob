@@ -1,7 +1,8 @@
 package dreamjob.controller;
 
 import dreamjob.model.Resume;
-import dreamjob.store.ResumeRepository;
+import dreamjob.service.ResumeService;
+import dreamjob.service.SimpleResumeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,15 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/resumes")
 public class ResumeController {
 
-    private final ResumeRepository resumeRepository;
-
-    public ResumeController(ResumeRepository resumeRepository) {
-        this.resumeRepository = resumeRepository;
-    }
+    private final ResumeService resumeService = SimpleResumeService.getInstance();
 
     @GetMapping
     public String getAll(Model model) {
-        model.addAttribute("resumes", resumeRepository.findAll());
+        model.addAttribute("resumes", resumeService.findAll());
         return "resumes/list";
     }
 
@@ -29,19 +26,19 @@ public class ResumeController {
 
     @PostMapping("/create")
     public String createPost(@ModelAttribute Resume resume) {
-        resumeRepository.save(resume);
+        resumeService.save(resume);
         return "redirect:/resumes";
     }
 
     @GetMapping("/update/{resumeId}")
     public String updateGet(Model model, @PathVariable("resumeId") int id) {
-        model.addAttribute("resume", resumeRepository.findById(id));
+        model.addAttribute("resume", resumeService.findById(id));
         return "resumes/update";
     }
 
     @PostMapping("/update")
     public String updatePost(@ModelAttribute Resume resume) {
-        resumeRepository.update(resume);
+        resumeService.update(resume);
         return "redirect:/resumes";
     }
 }

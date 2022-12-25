@@ -1,7 +1,8 @@
 package dreamjob.controller;
 
 import dreamjob.model.Vacancy;
-import dreamjob.store.VacancyRepository;
+import dreamjob.service.SimpleVacancyService;
+import dreamjob.service.VacancyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,15 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/vacancies")
 public class VacancyController {
 
-    private final VacancyRepository vacancyRepository;
-
-    public VacancyController(VacancyRepository vacancyRepository) {
-        this.vacancyRepository = vacancyRepository;
-    }
+    private final VacancyService vacancyService = SimpleVacancyService.getInstance();
 
     @GetMapping
     public String getAll(Model model) {
-        model.addAttribute("vacancies", vacancyRepository.findAll());
+        model.addAttribute("vacancies", vacancyService.findAll());
         return "vacancies/list";
     }
 
@@ -29,19 +26,19 @@ public class VacancyController {
 
     @PostMapping("/create")
     public String createPost(@ModelAttribute Vacancy vacancy) {
-        vacancyRepository.save(vacancy);
+        vacancyService.save(vacancy);
         return "redirect:/vacancies";
     }
 
     @GetMapping("/update/{vacancyId}")
     public String updateGet(Model model, @PathVariable("vacancyId") int id) {
-        model.addAttribute("vacancy", vacancyRepository.findById(id));
+        model.addAttribute("vacancy", vacancyService.findById(id));
         return "vacancies/update";
     }
 
     @PostMapping("/update")
     public String updatePost(@ModelAttribute Vacancy vacancy) {
-        vacancyRepository.update(vacancy);
+        vacancyService.update(vacancy);
         return "redirect:/vacancies";
     }
 }

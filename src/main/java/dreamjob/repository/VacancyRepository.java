@@ -1,4 +1,4 @@
-package dreamjob.store;
+package dreamjob.repository;
 
 import dreamjob.model.Vacancy;
 

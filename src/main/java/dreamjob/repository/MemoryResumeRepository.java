@@ -1,4 +1,4 @@
-package dreamjob.store;
+package dreamjob.repository;
 
 import dreamjob.model.Resume;
 import org.springframework.stereotype.Repository;
@@ -12,6 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class MemoryResumeRepository implements ResumeRepository {
 
+    private final static MemoryResumeRepository INSTANCE = new MemoryResumeRepository();
+
     private final AtomicInteger nextId = new AtomicInteger(1);
 
     private final Map<Integer, Resume> resumes = new HashMap<>();
@@ -23,6 +25,10 @@ public class MemoryResumeRepository implements ResumeRepository {
         save(new Resume("Java Developer", "Middle Developer"));
         save(new Resume("Java Developer", "Middle+ Developer"));
         save(new Resume("Java Developer", "Senior Developer"));
+    }
+
+    public static MemoryResumeRepository getInstance() {
+        return INSTANCE;
     }
 
     @Override
