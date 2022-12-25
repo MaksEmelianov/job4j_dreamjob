@@ -13,9 +13,7 @@ public class PostStore {
 
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
-    private final AtomicInteger mapKey = new AtomicInteger(0);
-
-    private final AtomicInteger pid = new AtomicInteger(1);
+    private final AtomicInteger nextId = new AtomicInteger(1);
 
     private PostStore() {
         add(new Post("Junior Java Job", "Desc Junior Java Dev"));
@@ -32,8 +30,8 @@ public class PostStore {
     }
 
     public void add(Post post) {
-        post.setId(pid.getAndIncrement());
-        posts.put(mapKey.getAndIncrement(), post);
+        post.setId(nextId.getAndIncrement());
+        posts.put(post.getId(), post);
     }
 
     public void update(Post post) {
