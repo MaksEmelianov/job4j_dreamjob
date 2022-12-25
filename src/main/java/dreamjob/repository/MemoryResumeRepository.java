@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class MemoryResumeRepository implements ResumeRepository {
 
-    private final static MemoryResumeRepository INSTANCE = new MemoryResumeRepository();
+    /*private final static MemoryResumeRepository INSTANCE = new MemoryResumeRepository();*/
 
     private final AtomicInteger nextId = new AtomicInteger(1);
 
@@ -27,9 +27,9 @@ public class MemoryResumeRepository implements ResumeRepository {
         save(new Resume("Java Developer", "Senior Developer"));
     }
 
-    public static MemoryResumeRepository getInstance() {
+    /*public static MemoryResumeRepository getInstance() {
         return INSTANCE;
-    }
+    }*/
 
     @Override
     public synchronized Resume save(Resume resume) {

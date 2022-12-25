@@ -1,21 +1,28 @@
 package dreamjob.service;
 
 import dreamjob.model.Vacancy;
-import dreamjob.repository.MemoryVacancyRepository;
 import dreamjob.repository.VacancyRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Optional;
 
+@Service
 public class SimpleVacancyService implements VacancyService {
 
-    private final static SimpleVacancyService INSTANCE = new SimpleVacancyService();
+    private final VacancyRepository vacancyRepository;
+
+    public SimpleVacancyService(VacancyRepository vacancyRepository) {
+        this.vacancyRepository = vacancyRepository;
+    }
+
+    /*private final static SimpleVacancyService INSTANCE = new SimpleVacancyService();
 
     private final VacancyRepository vacancyRepository = MemoryVacancyRepository.getInstance();
 
     public static SimpleVacancyService getInstance() {
         return INSTANCE;
-    }
+    }*/
 
     @Override
     public Vacancy save(Vacancy vacancy) {

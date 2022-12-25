@@ -2,7 +2,6 @@ package dreamjob.controller;
 
 import dreamjob.model.Resume;
 import dreamjob.service.ResumeService;
-import dreamjob.service.SimpleResumeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/resumes")
 public class ResumeController {
 
-    private final ResumeService resumeService = SimpleResumeService.getInstance();
+    private final ResumeService resumeService;
+
+    public ResumeController(ResumeService resumeService) {
+        this.resumeService = resumeService;
+    }
 
     @GetMapping
     public String getAll(Model model) {
