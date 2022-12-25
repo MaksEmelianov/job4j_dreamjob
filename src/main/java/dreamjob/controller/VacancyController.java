@@ -4,10 +4,7 @@ import dreamjob.model.Vacancy;
 import dreamjob.store.VacancyRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/vacancies")
@@ -33,6 +30,18 @@ public class VacancyController {
     @PostMapping("/create")
     public String createPost(@ModelAttribute Vacancy vacancy) {
         vacancyRepository.save(vacancy);
+        return "redirect:/vacancies";
+    }
+
+    @GetMapping("/update/{vacancyId}")
+    public String updateGet(Model model, @PathVariable("vacancyId") int id) {
+        model.addAttribute("vacancy", vacancyRepository.findById(id));
+        return "vacancies/update";
+    }
+
+    @PostMapping("/update")
+    public String updatePost(@ModelAttribute Vacancy vacancy) {
+        vacancyRepository.update(vacancy);
         return "redirect:/vacancies";
     }
 }

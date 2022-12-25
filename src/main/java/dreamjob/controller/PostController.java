@@ -25,16 +25,16 @@ public class PostController {
         return "posts/addPost";
     }
 
-    @GetMapping("/formUpdatePost/{postId}")
-    public String formUpdatePost(Model model, @PathVariable("postId") int id) {
-        model.addAttribute("post", postStore.findById(id));
-        return "posts/updatePost";
-    }
-
     @PostMapping("/createPost")
     public String createPost(@ModelAttribute Post post) {
         postStore.add(post);
         return "redirect:posts";
+    }
+
+    @GetMapping("/formUpdatePost/{postId}")
+    public String formUpdatePost(Model model, @PathVariable("postId") int id) {
+        model.addAttribute("post", postStore.findById(id));
+        return "posts/updatePost";
     }
 
     @PostMapping("/updatePost")
