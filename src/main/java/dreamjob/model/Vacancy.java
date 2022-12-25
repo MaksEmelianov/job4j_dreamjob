@@ -9,6 +9,20 @@ public class Vacancy {
     private String title;
     private String description;
     private LocalDateTime createDate = LocalDateTime.now();
+    private boolean visible;
+
+    public Vacancy(int id, String title, String description, boolean visible) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.visible = visible;
+    }
+
+    public Vacancy(String title, String description, boolean visible) {
+        this.title = title;
+        this.description = description;
+        this.visible = visible;
+    }
 
     public Vacancy(int id, String title, String description) {
         this.id = id;
@@ -54,6 +68,14 @@ public class Vacancy {
 
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
+    }
+
+    public boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     @Override
