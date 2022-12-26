@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class MemoryVacancyRepository implements VacancyRepository {
 
-    private final static MemoryVacancyRepository INSTANCE = new MemoryVacancyRepository();
+    /*private final static MemoryVacancyRepository INSTANCE = new MemoryVacancyRepository();*/
 
     private final AtomicInteger nextId = new AtomicInteger(1);
 
@@ -27,41 +27,42 @@ public class MemoryVacancyRepository implements VacancyRepository {
         save(new Vacancy("Java Developer", "Senior Java Developer"));
     }
 
-    public static MemoryVacancyRepository getInstance() {
+    /*public static MemoryVacancyRepository getInstance() {
         return INSTANCE;
-    }
+    }*/
 
     @Override
-    public synchronized Vacancy save(Vacancy vacancy) {
+    public Vacancy save(Vacancy vacancy) {
         vacancy.setId(nextId.getAndIncrement());
         vacancies.put(vacancy.getId(), vacancy);
         return vacancy;
     }
 
     @Override
-    public synchronized boolean deleteById(int id) {
+    public boolean deleteById(int id) {
         return vacancies.remove(id) != null;
     }
 
     @Override
-    public synchronized boolean update(Vacancy vacancy) {
+    public boolean update(Vacancy vacancy) {
         return vacancies.computeIfPresent(
                 vacancy.getId(),
                 (id, oldVacancy) -> new Vacancy(
-                            oldVacancy.getId(),
-                            vacancy.getTitle(),
-                            vacancy.getDescription(),
-                            vacancy.getVisible())
-                ) != null;
+                        oldVacancy.getId(),
+                        vacancy.getTitle(),
+                        vacancy.getDescription(),
+                        vacancy.getVisible(),
+                        vacancy.getCityId())
+        ) != null;
     }
 
     @Override
-    public synchronized Optional<Vacancy> findById(int id) {
+    public Optional<Vacancy> findById(int id) {
         return Optional.ofNullable(vacancies.get(id));
     }
 
     @Override
-    public synchronized Collection<Vacancy> findAll() {
+    public Collection<Vacancy> findAll() {
         return vacancies.values();
     }
 }

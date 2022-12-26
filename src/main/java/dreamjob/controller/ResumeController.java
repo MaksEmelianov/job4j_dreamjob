@@ -1,6 +1,7 @@
 package dreamjob.controller;
 
 import dreamjob.model.Resume;
+import dreamjob.service.CityService;
 import dreamjob.service.ResumeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +13,11 @@ public class ResumeController {
 
     private final ResumeService resumeService;
 
-    public ResumeController(ResumeService resumeService) {
+    private final CityService cityService;
+
+    public ResumeController(ResumeService resumeService, CityService cityService) {
         this.resumeService = resumeService;
+        this.cityService = cityService;
     }
 
     @GetMapping
@@ -23,7 +27,8 @@ public class ResumeController {
     }
 
     @GetMapping("/create")
-    public String createGet() {
+    public String createGet(Model model) {
+        model.addAttribute("cities", cityService.findAll());
         return "resumes/create";
     }
 
@@ -35,7 +40,14 @@ public class ResumeController {
 
     @GetMapping("/update/{resumeId}")
     public String updateGet(Model model, @PathVariable("resumeId") int id) {
-        model.addAttribute("resume", resumeService.findById(id));
+        var resumeOptional = resumeService.findById(id);
+        if (resumeOptional.isEmpty()) {
+            model.addAttribute("message",
+                    "Резюме с указанным идентификатором не найдена");
+            return "error/404";
+        }
+        model.addAttribute("cities", cityService.findAll());
+        model.addAttribute("resume", resumeOptional.get());
         return "resumes/update";
     }
 

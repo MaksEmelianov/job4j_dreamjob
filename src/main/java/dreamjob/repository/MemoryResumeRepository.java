@@ -32,35 +32,37 @@ public class MemoryResumeRepository implements ResumeRepository {
     }*/
 
     @Override
-    public synchronized Resume save(Resume resume) {
+    public Resume save(Resume resume) {
         resume.setId(nextId.getAndIncrement());
         resumes.put(resume.getId(), resume);
         return resume;
     }
 
     @Override
-    public synchronized boolean deleteById(int id) {
+    public boolean deleteById(int id) {
         return resumes.remove(id) != null;
     }
 
     @Override
-    public synchronized boolean update(Resume resume) {
+    public boolean update(Resume resume) {
         return resumes.computeIfPresent(
                 resume.getId(),
                 (id, oldVacancy) -> new Resume(
                         oldVacancy.getId(),
                         resume.getTitle(),
-                        resume.getDescription())
-                ) != null;
+                        resume.getDescription(),
+                        resume.isVisible(),
+                        resume.getCityId())
+        ) != null;
     }
 
     @Override
-    public synchronized Optional<Resume> findById(int id) {
+    public Optional<Resume> findById(int id) {
         return Optional.ofNullable(resumes.get(id));
     }
 
     @Override
-    public synchronized Collection<Resume> findAll() {
+    public Collection<Resume> findAll() {
         return resumes.values();
     }
 }
