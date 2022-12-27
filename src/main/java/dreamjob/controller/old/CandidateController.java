@@ -1,6 +1,6 @@
-package dreamjob.controller;
+package dreamjob.controller.old;
 
-import dreamjob.model.Candidate;
+import dreamjob.model.old.Candidate;
 import dreamjob.repository.old.CandidateStore;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

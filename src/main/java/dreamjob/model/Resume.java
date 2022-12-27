@@ -11,6 +11,7 @@ public class Resume {
     private LocalDateTime createDate = LocalDateTime.now();
     private boolean visible;
     private int cityId;
+    private byte[] photo;
 
     public Resume(int id, String title, String description, boolean visible, int cityId) {
         this.id = id;
@@ -18,12 +19,6 @@ public class Resume {
         this.description = description;
         this.visible = visible;
         this.cityId = cityId;
-    }
-
-    public Resume(int id, String title, String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
     }
 
     public Resume(String title, String description) {
@@ -66,7 +61,7 @@ public class Resume {
         this.createDate = createDate;
     }
 
-    public boolean isVisible() {
+    public boolean getVisible() {
         return visible;
     }
 
@@ -80,6 +75,14 @@ public class Resume {
 
     public void setCityId(int cityId) {
         this.cityId = cityId;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     @Override

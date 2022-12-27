@@ -1,22 +1,21 @@
-package dreamjob.repository;
+package dreamjob.repository.memory;
 
 import dreamjob.model.Vacancy;
+import dreamjob.repository.interfaces.VacancyRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class MemoryVacancyRepository implements VacancyRepository {
 
-    /*private final static MemoryVacancyRepository INSTANCE = new MemoryVacancyRepository();*/
-
     private final AtomicInteger nextId = new AtomicInteger(1);
 
-    private final Map<Integer, Vacancy> vacancies = new HashMap<>();
+    private final Map<Integer, Vacancy> vacancies = new ConcurrentHashMap<>();
 
     public MemoryVacancyRepository() {
         save(new Vacancy("Java Developer", "Intern Java Developer"));
@@ -26,10 +25,6 @@ public class MemoryVacancyRepository implements VacancyRepository {
         save(new Vacancy("Java Developer", "Middle+ Java Developer"));
         save(new Vacancy("Java Developer", "Senior Java Developer"));
     }
-
-    /*public static MemoryVacancyRepository getInstance() {
-        return INSTANCE;
-    }*/
 
     @Override
     public Vacancy save(Vacancy vacancy) {

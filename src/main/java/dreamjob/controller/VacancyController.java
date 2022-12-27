@@ -1,8 +1,8 @@
 package dreamjob.controller;
 
 import dreamjob.model.Vacancy;
-import dreamjob.service.CityService;
-import dreamjob.service.VacancyService;
+import dreamjob.service.interfaceы.CityService;
+import dreamjob.service.interfaceы.VacancyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

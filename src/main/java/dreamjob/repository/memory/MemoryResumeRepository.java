@@ -1,22 +1,21 @@
-package dreamjob.repository;
+package dreamjob.repository.memory;
 
 import dreamjob.model.Resume;
+import dreamjob.repository.interfaces.ResumeRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class MemoryResumeRepository implements ResumeRepository {
 
-    /*private final static MemoryResumeRepository INSTANCE = new MemoryResumeRepository();*/
-
     private final AtomicInteger nextId = new AtomicInteger(1);
 
-    private final Map<Integer, Resume> resumes = new HashMap<>();
+    private final Map<Integer, Resume> resumes = new ConcurrentHashMap<>();
 
     public MemoryResumeRepository() {
         save(new Resume("Java Developer", "Intern Developer"));
@@ -26,10 +25,6 @@ public class MemoryResumeRepository implements ResumeRepository {
         save(new Resume("Java Developer", "Middle+ Developer"));
         save(new Resume("Java Developer", "Senior Developer"));
     }
-
-    /*public static MemoryResumeRepository getInstance() {
-        return INSTANCE;
-    }*/
 
     @Override
     public Resume save(Resume resume) {
@@ -51,7 +46,7 @@ public class MemoryResumeRepository implements ResumeRepository {
                         oldVacancy.getId(),
                         resume.getTitle(),
                         resume.getDescription(),
-                        resume.isVisible(),
+                        resume.getVisible(),
                         resume.getCityId())
         ) != null;
     }

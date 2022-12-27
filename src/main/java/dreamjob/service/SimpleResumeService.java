@@ -1,7 +1,8 @@
 package dreamjob.service;
 
 import dreamjob.model.Resume;
-import dreamjob.repository.ResumeRepository;
+import dreamjob.repository.interfaces.ResumeRepository;
+import dreamjob.service.interfaceы.ResumeService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -15,14 +16,6 @@ public class SimpleResumeService implements ResumeService {
     public SimpleResumeService(ResumeRepository resumeRepository) {
         this.resumeRepository = resumeRepository;
     }
-
-    /*private final static SimpleResumeService INSTANCE = new SimpleResumeService();
-
-    private final ResumeRepository resumeRepository = MemoryResumeRepository.getInstance();
-
-    public static SimpleResumeService getInstance() {
-        return INSTANCE;
-    }*/
 
     @Override
     public Resume save(Resume resume) {

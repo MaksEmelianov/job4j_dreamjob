@@ -1,4 +1,4 @@
-package dreamjob.model;
+package dreamjob.model.old;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package dreamjob.service;
+package dreamjob.service.interfaceы;
 
 import dreamjob.model.Resume;
 

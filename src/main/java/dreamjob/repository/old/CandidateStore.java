@@ -1,6 +1,6 @@
 package dreamjob.repository.old;
 
-import dreamjob.model.Candidate;
+import dreamjob.model.old.Candidate;
 
 import java.util.Collection;
 import java.util.Map;

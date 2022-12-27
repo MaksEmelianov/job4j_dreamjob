@@ -20,25 +20,6 @@ public class Vacancy {
         this.cityId = cityId;
     }
 
-    public Vacancy(int id, String title, String description, boolean visible) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.visible = visible;
-    }
-
-    public Vacancy(String title, String description, boolean visible) {
-        this.title = title;
-        this.description = description;
-        this.visible = visible;
-    }
-
-    public Vacancy(int id, String title, String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-    }
-
     public Vacancy(String title, String description) {
         this.title = title;
         this.description = description;

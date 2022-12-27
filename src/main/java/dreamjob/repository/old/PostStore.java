@@ -1,6 +1,6 @@
 package dreamjob.repository.old;
 
-import dreamjob.model.Post;
+import dreamjob.model.old.Post;
 
 import java.util.Collection;
 import java.util.Map;

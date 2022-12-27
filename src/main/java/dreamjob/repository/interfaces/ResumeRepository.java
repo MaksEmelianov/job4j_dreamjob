@@ -1,4 +1,4 @@
-package dreamjob.repository;
+package dreamjob.repository.interfaces;
 
 import dreamjob.model.Resume;
 

@@ -1,11 +1,11 @@
-package dreamjob.service;
+package dreamjob.repository.interfaces;
 
 import dreamjob.model.Vacancy;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public interface VacancyService {
+public interface VacancyRepository {
 
     Vacancy save(Vacancy vacancy);
 

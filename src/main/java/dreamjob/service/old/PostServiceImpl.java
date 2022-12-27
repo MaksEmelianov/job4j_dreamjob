@@ -1,6 +1,6 @@
-package dreamjob.service;
+package dreamjob.service.old;
 
-import dreamjob.model.Post;
+import dreamjob.model.old.Post;
 import dreamjob.repository.old.PostStore;
 
 import java.util.List;
