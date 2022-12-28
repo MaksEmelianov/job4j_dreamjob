@@ -13,12 +13,18 @@ import java.util.Properties;
 @SpringBootApplication
 public class Main {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
-        System.out.println("Go to http://localhost:8080/index");
+    private Properties loadDbProperties() {
+        Properties cfg = new Properties();
+        try (InputStream io = new FileInputStream("db/liquibase.properties")) {
+            cfg.load(io);
+            Class.forName(cfg.getProperty("driver-class-name"));
+        } catch (IOException | ClassNotFoundException e) {
+            throw new IllegalStateException();
+        }
+        return cfg;
     }
 
-/*    @Bean
+    @Bean
     public BasicDataSource loadPool() {
         Properties cfg = loadDbProperties();
         BasicDataSource pool = new BasicDataSource();
@@ -30,41 +36,10 @@ public class Main {
         pool.setMaxIdle(10);
         pool.setMaxOpenPreparedStatements(100);
         return pool;
-    }*/
-
-    @Bean
-    public BasicDataSource loadPoolTest() {
-        Properties cfg = loadDbPropertiesTest();
-        BasicDataSource pool = new BasicDataSource();
-        pool.setDriverClassName(cfg.getProperty("driver-class-name"));
-        pool.setUrl(cfg.getProperty("url"));
-        pool.setUsername(cfg.getProperty("username"));
-        pool.setPassword(cfg.getProperty("password"));
-        pool.setMinIdle(5);
-        pool.setMaxIdle(10);
-        pool.setMaxOpenPreparedStatements(100);
-        return pool;
     }
 
-/*    private Properties loadDbProperties() {
-        Properties cfg = new Properties();
-        try (InputStream io = new FileInputStream("db/liquibase.properties")) {
-            cfg.load(io);
-            Class.forName(cfg.getProperty("driver-class-name"));
-        } catch (IOException | ClassNotFoundException e) {
-            throw new IllegalStateException();
-        }
-        return cfg;
-    }*/
-
-    private Properties loadDbPropertiesTest() {
-        Properties cfg = new Properties();
-        try (InputStream io = new FileInputStream("db/liquibase_test.properties")) {
-            cfg.load(io);
-            Class.forName(cfg.getProperty("driver-class-name"));
-        } catch (IOException | ClassNotFoundException e) {
-            throw new IllegalStateException();
-        }
-        return cfg;
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+        System.out.println("Go to http://localhost:8080/index");
     }
 }

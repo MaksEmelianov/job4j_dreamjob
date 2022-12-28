@@ -2,7 +2,7 @@ package dreamjob.service;
 
 import dreamjob.model.Vacancy;
 import dreamjob.repository.db.VacancyDBRepository;
-import dreamjob.service.interfaces.VacancyService;
+import dreamjob.service.interfaceы.VacancyService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

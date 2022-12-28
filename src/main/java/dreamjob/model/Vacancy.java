@@ -20,14 +20,6 @@ public class Vacancy {
         this.cityId = cityId;
     }
 
-    public Vacancy(String title, String description, LocalDateTime createDate, boolean visible, int cityId) {
-        this.title = title;
-        this.description = description;
-        this.createDate = createDate;
-        this.visible = visible;
-        this.cityId = cityId;
-    }
-
     public Vacancy(String title, String description) {
         this.title = title;
         this.description = description;

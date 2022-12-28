@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Required meta tags -->
@@ -15,7 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <title>Dream Job!</title>
+    <title>Работа мечты</title>
 </head>
 <body>
 <div class="container">
@@ -26,11 +26,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Главная <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
+                <a class="nav-item nav-link" th:href="@{/index}">Главная</a>
+                <a class="nav-item nav-link" th:href="@{/posts}">Вакансии </a>
                 <a class="nav-item nav-link" th:href="@{/formAddPost}">Добавить вакансию</a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
-                <a class="nav-item nav-link" th:href="@{/fromAddCandidate}">Добавить кандидата</a>
+                <a class="nav-item nav-link active" href="#">Добавить кандидата <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:href="@{/fromAddUser}">Регистрация пользователя</a>
                 <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/loginPage}">
                     <span th:text="${user.name}"></span>
@@ -44,36 +44,38 @@
         </div>
     </nav>
     <div class="row">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Редактирование кандидата.
+            </div>
+            <div class="card-body">
+                <form th:action="@{/updateCandidate}" method="POST" th:object="${candidate}" enctype="multipart/form-data">
+                    <input type="hidden" name="id" th:field="*{id}"/>
+                    <div class="form-group">
+                        <label>Имя
+                            <input type="text" class="form-control" name="name" th:field="*{name}">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="file">Фотография</label>
+                        <input type="file" class="form-control" name="file" id="file">
+                    </div>
+                    <p>
+                    <div class="form-group">
+                        <label>Описание
+                            <input type="text" class="form-control" name="description" th:field="*{description}">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="city.id">Город</label>
+                        <select class="form-control" id="city.id" name="city.id">
+                            <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </body>

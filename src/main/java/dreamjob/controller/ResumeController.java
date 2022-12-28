@@ -1,8 +1,8 @@
 package dreamjob.controller;
 
 import dreamjob.model.Resume;
-import dreamjob.service.interfaces.CityService;
-import dreamjob.service.interfaces.ResumeService;
+import dreamjob.service.interfaceы.CityService;
+import dreamjob.service.interfaceы.ResumeService;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
