@@ -2,7 +2,7 @@ package dreamjob.service;
 
 import dreamjob.model.City;
 import dreamjob.repository.interfaces.CityRepository;
-import dreamjob.service.interfaceы.CityService;
+import dreamjob.service.interfaces.CityService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

@@ -2,7 +2,7 @@ package dreamjob.service;
 
 import dreamjob.model.Resume;
 import dreamjob.repository.interfaces.ResumeRepository;
-import dreamjob.service.interfaceы.ResumeService;
+import dreamjob.service.interfaces.ResumeService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

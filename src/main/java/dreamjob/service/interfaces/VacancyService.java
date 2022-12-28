@@ -1,4 +1,4 @@
-package dreamjob.service.interfaceы;
+package dreamjob.service.interfaces;
 
 import dreamjob.model.Vacancy;
 

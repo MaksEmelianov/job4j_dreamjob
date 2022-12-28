@@ -45,8 +45,8 @@ public class VacancyDBRepository implements VacancyRepository {
     public Vacancy save(Vacancy vacancy) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "INSERT INTO vacancy(title, description, createDate, visible, cityId) " +
-                             "VALUES (?, ?, ?, ?, ?)",
+                     "INSERT INTO vacancy(title, description, createDate, visible, cityId) "
+                             + "VALUES (?, ?, ?, ?, ?)",
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, vacancy.getTitle());
             ps.setString(2, vacancy.getDescription());
@@ -70,9 +70,9 @@ public class VacancyDBRepository implements VacancyRepository {
         boolean result = false;
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "update vacancy set title = ?, description = ?, " +
-                             "createDate = ?, visible = ?, cityId = ?" +
-                             "where id = ?")) {
+                     "update vacancy set title = ?, description = ?, "
+                             + "createDate = ?, visible = ?, cityId = ?"
+                             + "where id = ?")) {
             ps.setString(1, vacancy.getTitle());
             ps.setString(2, vacancy.getDescription());
             ps.setTimestamp(3, Timestamp.valueOf(vacancy.getCreateDate()));
