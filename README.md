@@ -47,7 +47,7 @@ mvn spring-boot:run
 
 ### Screenshots
 ![](src/main/resources/images/registration.png)
-![](src/main/resources/images/list vacancies.png)
+![](src/main/resources/images/list_vacancies.png)
 ![](src/main/resources/images/candidates.png)
-![](src/main/resources/images/add vacancy.png)
-![](src/main/resources/images/add cabdidate.png)
+![](src/main/resources/images/add_vacancy.png)
+![](src/main/resources/images/add_cabdidate.png)
